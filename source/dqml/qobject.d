@@ -135,7 +135,7 @@ public class QObject
                                   string method,
                                   ConnectionType type = ConnectionType.Auto)
     {
-        return dos_qobject_signal_connect(sender.voidPointer,
+        return dos_qobject_connect_static(sender.voidPointer,
                                           signal.toStringz,
                                           receiver.voidPointer,
                                           method.toStringz,
@@ -148,7 +148,7 @@ public class QObject
                                      QObject receiver,
                                      string method)
     {
-        return dos_qobject_signal_disconnect(sender.voidPointer,
+        return dos_qobject_disconnect_static(sender.voidPointer,
                                              signal.toStringz,
                                              receiver.voidPointer,
                                              method.toStringz);

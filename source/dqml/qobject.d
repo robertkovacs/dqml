@@ -106,7 +106,7 @@ public class QObject
         void*[] array = null;
         if (length > 0) {
             array = new void*[length];
-            foreach (int i, QVariant v; arguments)
+            foreach (i, QVariant v; arguments)
                 array[i] = v.voidPointer();
         }
         dos_qobject_signal_emit(this.vptr,

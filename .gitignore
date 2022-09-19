@@ -6,3 +6,4 @@ dub.selections.json
 __test__library__
 *.dylib
 bin
+.DS_Store

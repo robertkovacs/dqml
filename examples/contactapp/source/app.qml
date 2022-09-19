@@ -1,7 +1,6 @@
-import QtQuick 2.2
-import QtQuick.Controls 1.2
-import QtQuick.Layouts 1.1
-import QtQuick.Window 2.1
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
 
 ApplicationWindow {
 
@@ -22,60 +21,22 @@ ApplicationWindow {
 	ColumnLayout {
 	    anchors.fill: parent
 
-        Component {
-            id: tableTextDelegate
-            Label {
-                id: tableTextDelegateInstance
-                property var styleData: undefined
-                states: State {
-                    when: styleData !== undefined
-                    PropertyChanges {
-                        target: tableTextDelegateInstance;
-                        text: styleData.value;
-                        color: styleData.textColor
-                    }
-                }
-            }
-        }
-
-        Component {
-            id: tableButtonDelegate
-            Button {
-                id: tableButtonDelegateInstance
-                property var styleData: undefined
-                text: "Delete"
-                onClicked: logic.contactList.del(styleData.row)
-            }
-        }
-
-        Component {
-            id: tableItemDelegate
-            Loader {
-                id: tableItemDelegateInstance
-                sourceComponent: {
-                    if (styleData.column === 0 || styleData.column === 1)
-                        return tableTextDelegate
-                    else if (styleData.column === 2)
-                        return tableButtonDelegate
-                    else
-                        return tableTextDelegate
-                }
-                Binding {
-                    target: tableItemDelegateInstance.item
-                    property: "styleData"
-                    value: styleData
-                }
-            }
-        }
-
         TableView {
             model: logic.contactList
             Layout.fillWidth: true
             Layout.fillHeight: true
-            TableViewColumn { role: "firstName"; title: "FirstName"; width: 200 }
-            TableViewColumn { role: "lastName"; title: "LastName"; width: 200}
-            TableViewColumn { width: 100; }
-            itemDelegate: tableItemDelegate
+
+            delegate: RowLayout {
+                Text {
+                    id: tableText
+                    text: model.firstName + " " + model.lastName
+                }
+                Button {
+                    id: deleteButton
+                    text: "Delete"
+                    onClicked: logic.contactList.del(row)
+                    }   
+            }
         }
 
         RowLayout {

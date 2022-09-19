@@ -151,8 +151,10 @@ private:
 				position++;
 			}
 
-			import std.string : split, strip, squeeze;
-			string lineData = lines[number][position..$].strip.squeeze;
+			import std.string : split, strip;
+			import std.algorithm : uniq;
+			import std.conv : to;
+			string lineData = lines[number][position..$].strip.uniq.to!string;
 
 			import std.array : empty, back, popBack;
 			if (!lineData.empty) {

@@ -1,8 +1,8 @@
-import QtQuick 2.2
-import QtQuick.Controls 1.2
-import QtQuick.Layouts 1.1
-import QtQuick.Window 2.1
-import ContactModule 1.0
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
+import QtQuick.Window
+import ContactModule
 
 ApplicationWindow {
     width: 400

@@ -1,7 +1,7 @@
-import QtQuick 2.2
-import QtQuick.Controls 1.2
-import QtQuick.Layouts 1.1
-import QtQuick.Window 2.1
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
+import QtQuick.Window
 
 ApplicationWindow {
     width: 400
@@ -15,6 +15,19 @@ ApplicationWindow {
         SpinBox { value: qVar1}
         TextField { text: qVar2}
         CheckBox { checked: qVar3}
-        SpinBox { value: qVar4; decimals: 1 }
+        SpinBox { 
+            property int decimals: 1
+            property int mul: 10
+            property real realValue: qVar4
+            value: realValue*mul
+
+            textFromValue: function(value, locale) {
+                return Number(value / mul).toLocaleString(locale, 'f', decimals)
+            }
+
+            valueFromText: function(text, locale) {
+                return Number.fromLocaleString(locale, text) * mul
+            } 
+        }
     }
 }

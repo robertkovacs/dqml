@@ -8,7 +8,7 @@ void main()
 	auto app = new QApplication;
 	scope(exit) destroy(app);
 
-    auto sender = new Sender();
+    auto sender = new Sender(1000);
     scope(exit) destroy(sender);
 
     auto receiver = new Receiver();
